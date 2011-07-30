@@ -7,3 +7,7 @@
 	#import <UIKit/UIKit.h>
 	#import "VTPG_Common.h"
 #endif
+
+
+#define RAPTOR_PLAY_BACKGROUND_MUSIC
+#undef RAPTOR_PLAY_BACKGROUND_MUSIC

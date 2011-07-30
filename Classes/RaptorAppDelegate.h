@@ -11,7 +11,7 @@
 @class RootViewController;
 
 @interface RaptorAppDelegate : NSObject <UIApplicationDelegate> {
-	UIWindow			*window;
+//	UIWindow			*window;
 	RootViewController	*viewController;
 	
 	BOOL paused;
@@ -19,7 +19,7 @@
 
 + (RaptorAppDelegate *)appDelegate;
 
-@property (nonatomic, retain) UIWindow *window;
+@property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, readwrite, assign) BOOL paused;
 
 @end

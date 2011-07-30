@@ -88,6 +88,9 @@
 		50F41343106926B2002A0D5E /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F41323106926B2002A0D5E /* CJSONSerializer.m */; };
 		50F414F11069373D002A0D5E /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F414ED1069373D002A0D5E /* fps_images.png */; };
 		50F414F21069373D002A0D5E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F414EE1069373D002A0D5E /* Icon.png */; };
+		AD9A9BC313E4990A00FBAC66 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD9A9BC213E4990A00FBAC66 /* MainWindow_iPad.xib */; };
+		AD9A9BC513E4991F00FBAC66 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD9A9BC413E4991F00FBAC66 /* MainWindow_iPhone.xib */; };
+		AD9A9BCB13E49A1E00FBAC66 /* RaptorAppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9A9BCA13E49A1E00FBAC66 /* RaptorAppDelegate_iPhone.m */; };
 		DC6640030F83B3EA000B3E49 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6640020F83B3EA000B3E49 /* AudioToolbox.framework */; };
 		DC6640050F83B3EA000B3E49 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6640040F83B3EA000B3E49 /* OpenAL.framework */; };
 		DCCBF1B70F6022AE0040855A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1B60F6022AE0040855A /* CoreGraphics.framework */; };
@@ -367,6 +370,10 @@
 		50F414ED1069373D002A0D5E /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
 		50F414EE1069373D002A0D5E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		50F414EF1069373D002A0D5E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD9A9BC213E4990A00FBAC66 /* MainWindow_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPad.xib; sourceTree = "<group>"; };
+		AD9A9BC413E4991F00FBAC66 /* MainWindow_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPhone.xib; sourceTree = "<group>"; };
+		AD9A9BC913E49A1E00FBAC66 /* RaptorAppDelegate_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RaptorAppDelegate_iPhone.h; sourceTree = "<group>"; };
+		AD9A9BCA13E49A1E00FBAC66 /* RaptorAppDelegate_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RaptorAppDelegate_iPhone.m; sourceTree = "<group>"; };
 		DC6640020F83B3EA000B3E49 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DC6640040F83B3EA000B3E49 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		DCCBF1B60F6022AE0040855A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -605,6 +612,8 @@
 				2D500B1D0D5A766B00DBA0E3 /* Classes */,
 				3EADD07A12F464150013D38C /* RoboKit */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				AD9A9BC113E498A500FBAC66 /* iPhone */,
+				AD9A9BBF13E4986400FBAC66 /* iPad */,
 				50F414EB1069373D002A0D5E /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -843,6 +852,24 @@
 				50F414EF1069373D002A0D5E /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		AD9A9BBF13E4986400FBAC66 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				AD9A9BC213E4990A00FBAC66 /* MainWindow_iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+		AD9A9BC113E498A500FBAC66 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				AD9A9BC413E4991F00FBAC66 /* MainWindow_iPhone.xib */,
+				AD9A9BC913E49A1E00FBAC66 /* RaptorAppDelegate_iPhone.h */,
+				AD9A9BCA13E49A1E00FBAC66 /* RaptorAppDelegate_iPhone.m */,
+			);
+			name = iPhone;
 			sourceTree = "<group>";
 		};
 		E02BB764126CC223006E46A2 /* cocos2d */ = {
@@ -1270,6 +1297,8 @@
 				3EADD95612F597AC0013D38C /* bg_lighter.png in Resources */,
 				3EADD96112F598DB0013D38C /* green_extinct.png in Resources */,
 				3EADD96212F598DB0013D38C /* red_extinct.png in Resources */,
+				AD9A9BC313E4990A00FBAC66 /* MainWindow_iPad.xib in Resources */,
+				AD9A9BC513E4991F00FBAC66 /* MainWindow_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1288,6 +1317,7 @@
 				3E207A5912F3825A00600CEA /* Player.m in Sources */,
 				3EADD07912F4632D0013D38C /* MultiplayerSession.m in Sources */,
 				3EADD07E12F464150013D38C /* VTPG_Common.m in Sources */,
+				AD9A9BCB13E49A1E00FBAC66 /* RaptorAppDelegate_iPhone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

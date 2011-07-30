@@ -129,7 +129,9 @@
 		MultiplayerSession *session		= [MultiplayerSession sharedMultiplayerSession];
 		session.gameSession.delegate	= self;
 		
+#ifdef RAPTOR_PLAY_BACKGROUND_MUSIC
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"startscreen.caf" loop:YES];
+#endif
 	}
 	return self;
 }
