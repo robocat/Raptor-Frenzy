@@ -125,7 +125,7 @@ typedef enum {
 }
 
 - (void)sendMessage:(NSString *)msg {
-	NSLog(msg);
+//	NSLog(msg);
 	NSData *data = [[NSString stringWithString:msg] dataUsingEncoding:NSUTF8StringEncoding];
 	[gameSession sendDataToAllPeers:data withDataMode:GKSendDataReliable error:nil];
 }
