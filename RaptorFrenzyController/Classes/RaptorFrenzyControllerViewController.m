@@ -92,6 +92,8 @@ typedef enum {
 			case GKPeerStateDisconnected:
 				[self disconnected];
 				break;
+			default:
+				break;
 		}
 	} else {
 		switch (state)
@@ -110,6 +112,8 @@ typedef enum {
 				self.gameSession			= session;
 				self.serverId				= peerID;
 				[[[RKSystemSound alloc] initWithSoundFile:@"begin"] playSound];
+				break;
+			default:
 				break;
 		}
 	}
