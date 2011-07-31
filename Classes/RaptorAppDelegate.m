@@ -125,11 +125,11 @@
 
 
 
-- (void)endSession {
-	MultiplayerSession *session	= [MultiplayerSession sharedMultiplayerSession];
-	session.gameSession.available = NO;
-	[session.gameSession disconnectFromAllPeers];
-}
+//- (void)endSession {
+//	MultiplayerSession *session	= [MultiplayerSession sharedMultiplayerSession];
+//	session.gameSession.available = NO;
+//	[session.gameSession disconnectFromAllPeers];
+//}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -162,6 +162,8 @@
 	[window release];
 	
 	[director end];
+	
+	[[MultiplayerSession sharedMultiplayerSession].gameSession disconnectFromAllPeers];
 }
 
 - (void)applicationSignificantTimeChange:(UIApplication *)application {

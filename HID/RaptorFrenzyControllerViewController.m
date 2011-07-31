@@ -10,6 +10,7 @@
 #import "RaptorFrenzyControllerViewController.h"
 #import "RKSystemSound.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "GKExtras.h"
 
 typedef enum {
 	Hit = 100, 
@@ -30,61 +31,67 @@ typedef enum {
 
 @implementation RaptorFrenzyControllerViewController
 
-@synthesize gameSession, serverId, connectionAlert;
+@synthesize gameSession, serverId, connectionAlert, peerIdOfThisController, connectingBackgroundImage, connectingAnimation;
+@synthesize rootScreen, connectingScreen, disconnectedScreen, gamepadScreen;
 
-#define kRaptorFrenzySessionID @"RaptorFrenzy"
-#define kMaxTankPacketSize 1024
+//#define kMaxTankPacketSize 1024
 
 #pragma mark -
 #pragma mark View Controller Related Methods
 
 - (void)viewDidLoad {
+	DLog();
 	[super viewDidLoad];
 	[self connect];
-	connectingAnimation.animationImages =	[NSArray arrayWithObjects:   
+	self.connectingAnimation.animationImages =	[NSArray arrayWithObjects:   
 											[UIImage imageNamed:@"running1.png"],
 											[UIImage imageNamed:@"running2.png"],
 											[UIImage imageNamed:@"running3.png"],
 											[UIImage imageNamed:@"running4.png"],
 											[UIImage imageNamed:@"running5.png"], nil];
-	connectingAnimation.animationDuration	 = 0.5; // repeat the annimation forever
-	connectingAnimation.animationRepeatCount = 0;	// repeat the annimation forever
-	[connectingAnimation startAnimating];			// start animating
+	self.connectingAnimation.animationDuration	 = 0.5; // repeat the annimation forever
+	self.connectingAnimation.animationRepeatCount = 0;	// repeat the annimation forever
+	[self.connectingAnimation startAnimating];			// start animating
 //	connectingScreen.hidden		= YES;
 //	disconnectedScreen.hidden	= NO;
 //	gamepadScreen.hidden		= YES;	
 }
 
 - (void)connect {
+	DLog();
 	connectingScreen.hidden		= NO;
 	disconnectedScreen.hidden	= YES;
 	gamepadScreen.hidden		= YES;
 	connectionAttempts			= 0;
-	[connectingBackgroundImage setImage:[UIImage imageNamed:@"loadscreen_bg.png"]];
-	gameSession = [[GKSession alloc] initWithSessionID:kRaptorFrenzySessionID 
+	[self.connectingBackgroundImage setImage:[UIImage imageNamed:@"loadscreen_bg.png"]];
+	IOLOG_GKSESSION(@"GKSESSION initWithSessionID");
+	self.gameSession = [[[GKSession alloc] initWithSessionID:kRaptorFrenzySessionID 
 										   displayName:nil 
-										   sessionMode:GKSessionModeClient];
-	connectingAnimation.hidden  = NO;
-	gameSession.delegate		= self;
-	gameSession.available		= YES;
-	[gameSession setDataReceiveHandler:self withContext:nil];
-	peerIdOfThisController		= gameSession.peerID;
+										   sessionMode:GKSessionModeClient] autorelease];
+	self.connectingAnimation.hidden  = NO;
+	self.gameSession.delegate		= self;
+	[self.gameSession setDataReceiveHandler:self withContext:nil];
+	self.gameSession.available		= YES;
+	self.peerIdOfThisController		= gameSession.peerID;
 }
 
 - (void)disconnected {
-	gameSession.available		= NO;
+	DLog();
+	self.gameSession.available		= NO;
 	
-	[connectingBackgroundImage setImage:[UIImage imageNamed:@"loadscreen_bg.png"]];
-	connectingAnimation.hidden  = NO;
+	[self.connectingBackgroundImage setImage:[UIImage imageNamed:@"loadscreen_bg.png"]];
+	self.connectingAnimation.hidden  = NO;
 	connectingScreen.hidden		= YES;
 	gamepadScreen.hidden		= YES;
 	disconnectedScreen.hidden	= NO;
 	
-	[gameSession disconnectFromAllPeers];
+	[self.gameSession disconnectFromAllPeers];
 }
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state
 {	
+	DLog();
+	IOLOG_GKSESSION(@"GKSESSION peerID: %@, name: %@, state: %@", peerID,[session displayNameForPeer:peerID],NSStringFromGKPeerConnectionState(state));
 	if ([peerID isEqualToString:serverId]) {
 		switch (state)
 		{	
@@ -100,8 +107,8 @@ typedef enum {
 		{
 			// The server is available. Display the proper screen. 
 			case GKPeerStateAvailable: 
-				[connectingBackgroundImage setImage:[UIImage imageNamed:@"foundfight_bg.png"]];
-				connectingAnimation.hidden = YES;
+				[self.connectingBackgroundImage setImage:[UIImage imageNamed:@"foundfight_bg.png"]];
+				self.connectingAnimation.hidden = YES;
 				[session connectToPeer:peerID withTimeout:10];
 				break;
 			// This controller is now connected to the server. Display the proper screen.
@@ -120,6 +127,7 @@ typedef enum {
 }
 
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
+	DLog();
 	connectionAttempts++;
 	[session connectToPeer:peerID withTimeout:10];
 }
@@ -129,9 +137,10 @@ typedef enum {
 }
 
 - (void)sendMessage:(NSString *)msg {
+	DLog();
 //	NSLog(msg);
 	NSData *data = [[NSString stringWithString:msg] dataUsingEncoding:NSUTF8StringEncoding];
-	[gameSession sendDataToAllPeers:data withDataMode:GKSendDataReliable error:nil];
+	[self.gameSession sendDataToAllPeers:data withDataMode:GKSendDataReliable error:nil];
 }
 
 #pragma mark View Related 
@@ -142,13 +151,15 @@ typedef enum {
 }
 
 - (void)didReceiveMemoryWarning {
+	DLog();
 	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
+ //   [super didReceiveMemoryWarning];
 	
 	// Release any cached data, images, etc that aren't in use.
 }
 
 - (void)dealloc {
+	DLog();
     [super dealloc];
 }
 
@@ -156,6 +167,7 @@ typedef enum {
 #pragma mark MessageHandler 
 
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context { 
+	DLog();
 	
 	NSString *received = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	int command = [received intValue];
@@ -189,44 +201,49 @@ typedef enum {
 #pragma mark IBActions
 
 - (IBAction)reconnect:(id)sender {
+	DLog();
 	[self connect];
 }
 
 - (IBAction)upPressed:(id)sender {
+	DLog();
 	[self sendMessage:[NSString stringWithFormat:@"%d", ButtonUpPressed]];
 }
 
 - (IBAction)upReleased:(id)sender {
+	DLog();
 	[self sendMessage:[NSString stringWithFormat:@"%d", ButtonUpReleased]];
 }
 
 - (void)leftPressed:(id)sender {
-	NSLog(@"leftPressed");
+	DLog();
 	[self sendMessage:[NSString stringWithFormat:@"%d", ButtonLeftPressed]];
 	[[[RKSystemSound alloc] initWithSoundFile:@"walk"] playSound];
 }
 
 - (void)leftReleased:(id)sender {
-	NSLog(@"leftReleased");
+	DLog();
 	[self sendMessage:[NSString stringWithFormat:@"%d", ButtonLeftReleased]];
 }
 
 - (void)rightPressed:(id)sender {
-	NSLog(@"rightPressed");
+	DLog();
 	[[[RKSystemSound alloc] initWithSoundFile:@"walk"] playSound];
 	[self sendMessage:[NSString stringWithFormat:@"%d", ButtonRightPressed]];
 }
 
 - (void)rightReleased:(id)sender {
-	NSLog(@"rightReleased");
+	DLog();
 	[self sendMessage:[NSString stringWithFormat:@"%d", ButtonRightReleased]];
 }
 
 - (void)bitePressed:(id)sender {
+	DLog();
 	[self sendMessage:[NSString stringWithFormat:@"%d", ButtonAttackPressed]];
 }
 
 - (void)biteReleased:(id)sender {
+	DLog();
 	[self sendMessage:[NSString stringWithFormat:@"%d", ButtonAttackReleased]];
 }
 

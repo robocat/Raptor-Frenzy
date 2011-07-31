@@ -138,6 +138,7 @@
 		AD9A9C5313E4B2CB00FBAC66 /* RKSystemSound.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9A9C4E13E4B2CB00FBAC66 /* RKSystemSound.m */; };
 		AD9A9C5613E4B45700FBAC66 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD9A9C5413E4B45700FBAC66 /* MainWindow.xib */; };
 		AD9A9C5713E4B45700FBAC66 /* RaptorFrenzyControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD9A9C5513E4B45700FBAC66 /* RaptorFrenzyControllerViewController.xib */; };
+		ADF946E213E5A526008A789F /* GKExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF946E113E5A526008A789F /* GKExtras.m */; };
 		DC6640030F83B3EA000B3E49 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6640020F83B3EA000B3E49 /* AudioToolbox.framework */; };
 		DC6640050F83B3EA000B3E49 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6640040F83B3EA000B3E49 /* OpenAL.framework */; };
 		DCCBF1B70F6022AE0040855A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1B60F6022AE0040855A /* CoreGraphics.framework */; };
@@ -473,6 +474,9 @@
 		AD9A9C4E13E4B2CB00FBAC66 /* RKSystemSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RKSystemSound.m; path = HID/RKSystemSound.m; sourceTree = "<group>"; };
 		AD9A9C5413E4B45700FBAC66 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = HID/MainWindow.xib; sourceTree = "<group>"; };
 		AD9A9C5513E4B45700FBAC66 /* RaptorFrenzyControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RaptorFrenzyControllerViewController.xib; path = HID/RaptorFrenzyControllerViewController.xib; sourceTree = "<group>"; };
+		ADF946DF13E59202008A789F /* logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging.h; sourceTree = "<group>"; };
+		ADF946E113E5A526008A789F /* GKExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GKExtras.m; path = RoboKit/GKExtras.m; sourceTree = "<group>"; };
+		ADF946E313E5A5EB008A789F /* GKExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GKExtras.h; path = RoboKit/GKExtras.h; sourceTree = "<group>"; };
 		DC6640020F83B3EA000B3E49 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DC6640040F83B3EA000B3E49 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		DCCBF1B60F6022AE0040855A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -705,8 +709,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				504DFC6810AF1739006D82FE /* LICENSE.cocos2d */,
-				504DFC6910AF1739006D82FE /* LICENSE.cocosdenshion */,
+				ADFDFD9A13E4C2F200F14615 /* cocos2d Licenses */,
 				506EDAA3102F461B00A389B3 /* cocos2d Sources */,
 				2D500B1D0D5A766B00DBA0E3 /* Classes */,
 				3EADD07A12F464150013D38C /* RoboKit */,
@@ -724,6 +727,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				ADF946E313E5A5EB008A789F /* GKExtras.h */,
+				ADF946E113E5A526008A789F /* GKExtras.m */,
 				1F3B9A820EF2151B00286867 /* Raptor_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -810,6 +815,7 @@
 				3EADD07B12F464150013D38C /* SynthesizeSingleton.h */,
 				3EADD07C12F464150013D38C /* VTPG_Common.h */,
 				3EADD07D12F464150013D38C /* VTPG_Common.m */,
+				ADF946DF13E59202008A789F /* logging.h */,
 			);
 			path = RoboKit;
 			sourceTree = "<group>";
@@ -1045,6 +1051,15 @@
 				AD9A9BD913E4A8D600FBAC66 /* walkloop.caf */,
 			);
 			name = HID;
+			sourceTree = "<group>";
+		};
+		ADFDFD9A13E4C2F200F14615 /* cocos2d Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				504DFC6810AF1739006D82FE /* LICENSE.cocos2d */,
+				504DFC6910AF1739006D82FE /* LICENSE.cocosdenshion */,
+			);
+			name = "cocos2d Licenses";
 			sourceTree = "<group>";
 		};
 		E02BB764126CC223006E46A2 /* cocos2d */ = {
@@ -1540,6 +1555,7 @@
 				AD9A9C5113E4B2CB00FBAC66 /* RaptorFrenzyControllerAppDelegate.m in Sources */,
 				AD9A9C5213E4B2CB00FBAC66 /* RaptorFrenzyControllerViewController.m in Sources */,
 				AD9A9C5313E4B2CB00FBAC66 /* RKSystemSound.m in Sources */,
+				ADF946E213E5A526008A789F /* GKExtras.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

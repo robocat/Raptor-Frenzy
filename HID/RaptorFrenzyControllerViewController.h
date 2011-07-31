@@ -13,25 +13,32 @@
 		
 	int connectionAttempts;	
 	
-	NSString				*peerIdOfThisController; 
+//	NSString				*peerIdOfThisController; 
 	
-	// IB
-	IBOutlet	UIImageView *connectingBackgroundImage;
-	IBOutlet	UIImageView *connectingAnimation;
-	IBOutlet	UIView		*rootScreen; 
-	IBOutlet	UIView		*connectingScreen; 
-	IBOutlet	UIView		*disconnectedScreen;
-	IBOutlet	UIView		*gamepadScreen; 
-	
-	// Networking 
-	GKSession				*gameSession;
-	NSString				*serverId;
-	UIAlertView				*connectionAlert;	
+// IB
+//	IBOutlet	UIImageView *connectingBackgroundImage;
+//	IBOutlet	UIImageView *connectingAnimation;
+//	IBOutlet	UIView		*rootScreen; 
+//	IBOutlet	UIView		*connectingScreen; 
+//	IBOutlet	UIView		*disconnectedScreen;
+//	IBOutlet	UIView		*gamepadScreen; 
+//	
+//	// Networking 
+//	GKSession				*gameSession;
+//	NSString				*serverId;
+//	UIAlertView				*connectionAlert;	
 }
+@property(nonatomic, retain) IBOutlet UIImageView *connectingBackgroundImage;
+@property(nonatomic, retain) IBOutlet UIImageView *connectingAnimation;
+@property(nonatomic, retain) IBOutlet UIView *rootScreen;
+@property(nonatomic, retain) IBOutlet UIView *connectingScreen;
+@property(nonatomic, retain) IBOutlet UIView *disconnectedScreen;
+@property(nonatomic, retain) IBOutlet UIView *gamepadScreen;
 
 @property(nonatomic, retain) GKSession	 *gameSession;
 @property(nonatomic, copy)	 NSString	 *serverId;
 @property(nonatomic, retain) UIAlertView *connectionAlert;
+@property(nonatomic, retain) NSString *peerIdOfThisController;
 
 - (void)connect;
 - (void)disconnected;

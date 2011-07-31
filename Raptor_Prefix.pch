@@ -8,6 +8,18 @@
 	#import "VTPG_Common.h"
 #endif
 
+// GameKit Session
+#define kRaptorFrenzySessionID @"RaptorFrenzy"
 
+// Development settings
 #define RAPTOR_PLAY_BACKGROUND_MUSIC
 #undef RAPTOR_PLAY_BACKGROUND_MUSIC
+
+
+#define RAPTOR_LOG_GKSESSION YES
+//#undef RAPTOR_PLAY_BACKGROUND_MUSIC
+
+
+// 
+#import "logging.h"
+#define IOLOG_GKSESSION(_format_, ...) if(RAPTOR_LOG_GKSESSION) {DLog(_format_,##__VA_ARGS__);}

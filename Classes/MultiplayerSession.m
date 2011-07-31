@@ -11,7 +11,6 @@
 
 
 
-#define kRaptorFrenzySessionID		@"RaptorFrenzy"
 #define kRaptorFrenzyMaxPlayers		2
 
 
@@ -28,6 +27,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MultiplayerSession);
 - (id) init {
     self = [super init];
     if (self != nil) {
+		IOLOG_GKSESSION(@"initWithSessionID");
 		self.gameSession = [[GKSession alloc] initWithSessionID:kRaptorFrenzySessionID
 													displayName:nil
 													sessionMode:GKSessionModeServer];
@@ -39,8 +39,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MultiplayerSession);
 }
 
 
+-(void)disconnect {
+	[self.gameSession disconnectFromAllPeers];
+	self.gameSession.available = NO;
+	[self.gameSession setDataReceiveHandler: nil withContext: nil];
+	self.gameSession.delegate = nil;
+}
+
 - (void)dealloc
 {
+	[self disconnect];
 	[_gameSession release];
 	_gameSession = nil;
 
@@ -49,5 +57,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MultiplayerSession);
 
 	[super dealloc];
 }
+
 
 @end

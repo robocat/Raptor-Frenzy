@@ -11,11 +11,13 @@
 #import "GameScene.h"
 #import "MultiplayerSession.h"
 #import "SimpleAudioEngine.h"
+#import "GKExtras.h"
 
 
 
 
 #define	kMinNumOfPlayers		2
+#define	kMaxNumOfPlayers		2
 #define kRunSprites				5
 
 
@@ -86,29 +88,21 @@
 		id action = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:runAnim restoreOriginalFrame:NO]];
 		
 		
-		// Create a sprite for our bear
+		// Create sprites for our raptors
 		self.raptor1 = [CCSprite spriteWithSpriteFrameName:@"standing1.png"];
 		self.raptor1.scale = 4.0;
 		[self.raptor1.texture setAliasTexParameters];
 		[self.raptor1 runAction:action];
 		self.raptor1.position = ccp(-300, 154);
-		
 		[self addChild:self.raptor1];
 
-		
 		self.raptor2 = [CCSprite spriteWithSpriteFrameName:@"standing1.png"];
 		self.raptor2.scale = 4.0;
 		[self.raptor2.texture setAliasTexParameters];
 		[self.raptor2 runAction:action];
 		self.raptor2.flipX = YES;
 		self.raptor2.position = ccp(1024+300, 154);
-		
 		[self addChild:self.raptor2];
-		
-		
-		
-		
-		
 		
 		// create and initialize a Label
 		CCLabelTTF *label = [CCLabelTTF labelWithString:@"                    " fontName:@"Helvetica" fontSize:64];
@@ -139,11 +133,7 @@
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
 {
-	// in case you have something to dealloc, do it in this method
-	// in this particular example nothing needs to be released.
 	// cocos2d will automatically release all the children (Label)
-	
-	// don't forget to call "super dealloc"
 	[_raptor2 release];
 	_raptor2 = nil;
 
@@ -161,14 +151,24 @@
 }
 
 
-
+#pragma mark -
+#pragma mark <GKSessionDelegate>
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID {
-	NSLog(@"request: %@",peerID);
-	[session acceptConnectionFromPeer:peerID error:nil];
+	IOLOG_GKSESSION(@"GKSESSION didReceiveConnectionRequestFromPeer %@",peerID);
+	MultiplayerSession *msession		= [MultiplayerSession sharedMultiplayerSession];
+	if ([msession.listOfPlayers count]<kMaxNumOfPlayers) {
+		IOLOG_GKSESSION(@"Accepted connection");
+		[session acceptConnectionFromPeer:peerID error:nil];
+	} else {
+		IOLOG_GKSESSION(@"DENIED connection. Max number of players");
+		[session denyConnectionFromPeer:peerID];
+	}
 }
+
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state
 {
+	IOLOG_GKSESSION(@"GKSESSION peer:%@ didChangeState:%@",peerID, NSStringFromGKPeerConnectionState(state));
 	MultiplayerSession *msession		= [MultiplayerSession sharedMultiplayerSession];
 	
     switch (state)
@@ -191,18 +191,19 @@
 			
 			break;
         case GKPeerStateDisconnected:
-//			for (NSString *pID in msession.listOfPlayers) {
-//				[msession.listOfPlayers removeObject:pID];
-//			}
-			
+			IOLOG_GKSESSION(@"GKSESSION Peer DISCONNECTED: %@",[session displayNameForPeer:peerID]);
+			[msession.listOfPlayers removeObject:peerID];
 			break;
 		default:
+			IOLOG_GKSESSION(@"GKSESSION state change NOT HANDLED: %@", NSStringFromGKPeerConnectionState(state));
 			break;
     }
+	IOLOG_GKSESSION(@"GKSESSION listOfPlayers %@",msession.listOfPlayers);
 }
 
 - (void)session:(GKSession *)session didFailWithError:(NSError *)error {
-	NSLog(@"session:didFailWithError: %@", error);
+	IOLOG_GKSESSION(@"GKSESSION didFailWithError: %@",error);
+	[[UIAlertView alloc] initWithTitle:@"Session failed" message:[NSString stringWithFormat:@"%@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 }
 
 @end
