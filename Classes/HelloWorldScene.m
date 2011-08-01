@@ -120,8 +120,8 @@
 		[self addChild:menu];
 		[menu setPosition:ccp(480,120)];
 		
-		MultiplayerSession *session		= [MultiplayerSession sharedMultiplayerSession];
-		session.gameSession.delegate	= self;
+//		MultiplayerSession *session		= [MultiplayerSession sharedMultiplayerSession];
+//		session.gameSession.delegate	= self;
 		
 #ifdef RAPTOR_PLAY_BACKGROUND_MUSIC
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"startscreen.caf" loop:YES];
@@ -151,59 +151,59 @@
 }
 
 
-#pragma mark -
-#pragma mark <GKSessionDelegate>
-- (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID {
-	IOLOG_GKSESSION(@"GKSESSION didReceiveConnectionRequestFromPeer %@",peerID);
-	MultiplayerSession *msession		= [MultiplayerSession sharedMultiplayerSession];
-	if ([msession.listOfPlayers count]<kMaxNumOfPlayers) {
-		IOLOG_GKSESSION(@"Accepted connection");
-		[session acceptConnectionFromPeer:peerID error:nil];
-	} else {
-		IOLOG_GKSESSION(@"DENIED connection. Max number of players");
-		[session denyConnectionFromPeer:peerID];
-	}
-}
-
-
-- (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state
-{
-	IOLOG_GKSESSION(@"GKSESSION peer:%@ didChangeState:%@",peerID, NSStringFromGKPeerConnectionState(state));
-	MultiplayerSession *msession		= [MultiplayerSession sharedMultiplayerSession];
-	
-    switch (state)
-    {
-        case GKPeerStateConnected:
-			[msession.listOfPlayers addObject:peerID];
-			
-			if ([msession.listOfPlayers count] == 1) {
-				id action = [CCMoveTo actionWithDuration:3.0 position:ccp(250, 154)];				
-				[self.raptor1 runAction:action];
-			}
-			else {
-				id action = [CCSequence actions:
-							 [CCMoveTo actionWithDuration:3.0 position:ccp(1024-250, 154)],
-							 [CCCallFunc actionWithTarget:self selector:@selector(newGame:)],
-							 nil];
-				
-				[self.raptor2 runAction:action];
-			}
-			
-			break;
-        case GKPeerStateDisconnected:
-			IOLOG_GKSESSION(@"GKSESSION Peer DISCONNECTED: %@",[session displayNameForPeer:peerID]);
-			[msession.listOfPlayers removeObject:peerID];
-			break;
-		default:
-			IOLOG_GKSESSION(@"GKSESSION state change NOT HANDLED: %@", NSStringFromGKPeerConnectionState(state));
-			break;
-    }
-	IOLOG_GKSESSION(@"GKSESSION listOfPlayers %@",msession.listOfPlayers);
-}
-
-- (void)session:(GKSession *)session didFailWithError:(NSError *)error {
-	IOLOG_GKSESSION(@"GKSESSION didFailWithError: %@",error);
-	[[UIAlertView alloc] initWithTitle:@"Session failed" message:[NSString stringWithFormat:@"%@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-}
+//#pragma mark -
+//#pragma mark <GKSessionDelegate>
+//- (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID {
+//	IOLOG_GKSESSION(@"GKSESSION didReceiveConnectionRequestFromPeer %@",peerID);
+//	MultiplayerSession *msession		= [MultiplayerSession sharedMultiplayerSession];
+//	if ([msession.listOfPlayers count]<kMaxNumOfPlayers) {
+//		IOLOG_GKSESSION(@"Accepted connection");
+//		[session acceptConnectionFromPeer:peerID error:nil];
+//	} else {
+//		IOLOG_GKSESSION(@"DENIED connection. Max number of players");
+//		[session denyConnectionFromPeer:peerID];
+//	}
+//}
+//
+//
+//- (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state
+//{
+//	IOLOG_GKSESSION(@"GKSESSION peer:%@ didChangeState:%@",peerID, NSStringFromGKPeerConnectionState(state));
+//	MultiplayerSession *msession		= [MultiplayerSession sharedMultiplayerSession];
+//	
+//    switch (state)
+//    {
+//        case GKPeerStateConnected:
+//			[msession.listOfPlayers addObject:peerID];
+//			
+//			if ([msession.listOfPlayers count] == 1) {
+//				id action = [CCMoveTo actionWithDuration:3.0 position:ccp(250, 154)];				
+//				[self.raptor1 runAction:action];
+//			}
+//			else {
+//				id action = [CCSequence actions:
+//							 [CCMoveTo actionWithDuration:3.0 position:ccp(1024-250, 154)],
+//							 [CCCallFunc actionWithTarget:self selector:@selector(newGame:)],
+//							 nil];
+//				
+//				[self.raptor2 runAction:action];
+//			}
+//			
+//			break;
+//        case GKPeerStateDisconnected:
+//			IOLOG_GKSESSION(@"GKSESSION Peer DISCONNECTED: %@",[session displayNameForPeer:peerID]);
+//			[msession.listOfPlayers removeObject:peerID];
+//			break;
+//		default:
+//			IOLOG_GKSESSION(@"GKSESSION state change NOT HANDLED: %@", NSStringFromGKPeerConnectionState(state));
+//			break;
+//    }
+//	IOLOG_GKSESSION(@"GKSESSION listOfPlayers %@",msession.listOfPlayers);
+//}
+//
+//- (void)session:(GKSession *)session didFailWithError:(NSError *)error {
+//	IOLOG_GKSESSION(@"GKSESSION didFailWithError: %@",error);
+//	[[UIAlertView alloc] initWithTitle:@"Session failed" message:[NSString stringWithFormat:@"%@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//}
 
 @end

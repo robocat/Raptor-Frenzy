@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Log.h"
+#import "GameSession.h"
 
 @class RootViewController;
 
@@ -20,6 +22,8 @@
 + (RaptorAppDelegate *)appDelegate;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) IBOutlet id<LogDelegate> log;
 @property (nonatomic, readwrite, assign) BOOL paused;
+@property (nonatomic, retain) GameSession *gameSession;
 
 @end

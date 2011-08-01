@@ -9,7 +9,7 @@
 #import "GameScene.h"
 #import	"Player.h"
 #import "SimpleAudioEngine.h"
-#import "MultiplayerSession.h"
+//#import "MultiplayerSession.h"
 
 
 #define KGameLayer 1
@@ -121,9 +121,9 @@
 		
 		self.isTouchEnabled = YES;
 		
-		MultiplayerSession *session		= [MultiplayerSession sharedMultiplayerSession];
-		session.gameSession.delegate	= self;
-		[session.gameSession setDataReceiveHandler:self withContext:nil];
+//		MultiplayerSession *session		= [MultiplayerSession sharedMultiplayerSession];
+//		session.gameSession.delegate	= self;
+//		[session.gameSession setDataReceiveHandler:self withContext:nil];
 		
 		
 		self.emitter = [CCParticleSystemQuad particleWithFile:@"blood_effect.plist"];
@@ -270,17 +270,17 @@
 	float damage2 = [self.player1 resolveAttackOn:self.player2];
 	
 	
-	MultiplayerSession *session = [MultiplayerSession sharedMultiplayerSession];
+//	MultiplayerSession *session = [MultiplayerSession sharedMultiplayerSession];
 	
 	if ((damage1 > 0) && (self.player1.health>0.0)) {
-		
-		if ([session.listOfPlayers count] > 1) {
-			NSData *data = [[NSString stringWithFormat:@"%d", CommandHit] dataUsingEncoding:NSUTF8StringEncoding];
-			[session.gameSession sendData:data toPeers:[NSArray arrayWithObject:[session.listOfPlayers objectAtIndex:1]] withDataMode:GKSendDataReliable error:nil];
-		}
-		
-		NSData *data2 = [[NSString stringWithFormat:@"%d", CommandStun] dataUsingEncoding:NSUTF8StringEncoding];
-		[session.gameSession sendData:data2 toPeers:[NSArray arrayWithObject:[session.listOfPlayers objectAtIndex:0]] withDataMode:GKSendDataReliable error:nil];
+//		
+//		if ([session.listOfPlayers count] > 1) {
+//			NSData *data = [[NSString stringWithFormat:@"%d", CommandHit] dataUsingEncoding:NSUTF8StringEncoding];
+//			[session.gameSession sendData:data toPeers:[NSArray arrayWithObject:[session.listOfPlayers objectAtIndex:1]] withDataMode:GKSendDataReliable error:nil];
+//		}
+//		
+//		NSData *data2 = [[NSString stringWithFormat:@"%d", CommandStun] dataUsingEncoding:NSUTF8StringEncoding];
+//		[session.gameSession sendData:data2 toPeers:[NSArray arrayWithObject:[session.listOfPlayers objectAtIndex:0]] withDataMode:GKSendDataReliable error:nil];
 				
 		[self.player1 stunned];
 		self.player1.health -= damage1;
@@ -290,8 +290,8 @@
 		[self updateHealth:self.health1Sprite toValue:self.player1.health];
 		
 		if (self.player1.health <= 10.0) {
-			NSData *data3 = [[NSString stringWithFormat:@"%d", CommandLowHealth] dataUsingEncoding:NSUTF8StringEncoding];
-			[session.gameSession sendData:data3 toPeers:[NSArray arrayWithObject:[session.listOfPlayers objectAtIndex:0]] withDataMode:GKSendDataReliable error:nil];
+//			NSData *data3 = [[NSString stringWithFormat:@"%d", CommandLowHealth] dataUsingEncoding:NSUTF8StringEncoding];
+//			[session.gameSession sendData:data3 toPeers:[NSArray arrayWithObject:[session.listOfPlayers objectAtIndex:0]] withDataMode:GKSendDataReliable error:nil];
 		}
 		
 		if (self.player1.health <= 0.0) {
@@ -302,13 +302,13 @@
 	
 	if ((damage2 > 0) && (self.player2.health>0.0)) {
 		
-		NSData *data = [[NSString stringWithFormat:@"%d", CommandHit] dataUsingEncoding:NSUTF8StringEncoding];
-		[session.gameSession sendData:data toPeers:[NSArray arrayWithObject:[session.listOfPlayers objectAtIndex:0]] withDataMode:GKSendDataReliable error:nil];
-		
-		if ([session.listOfPlayers count] > 1) {
-			NSData *data2 = [[NSString stringWithFormat:@"%d", CommandStun] dataUsingEncoding:NSUTF8StringEncoding];
-			[session.gameSession sendData:data2 toPeers:[NSArray arrayWithObject:[session.listOfPlayers objectAtIndex:1]] withDataMode:GKSendDataReliable error:nil];
-		}
+//		NSData *data = [[NSString stringWithFormat:@"%d", CommandHit] dataUsingEncoding:NSUTF8StringEncoding];
+//		[session.gameSession sendData:data toPeers:[NSArray arrayWithObject:[session.listOfPlayers objectAtIndex:0]] withDataMode:GKSendDataReliable error:nil];
+//		
+//		if ([session.listOfPlayers count] > 1) {
+//			NSData *data2 = [[NSString stringWithFormat:@"%d", CommandStun] dataUsingEncoding:NSUTF8StringEncoding];
+//			[session.gameSession sendData:data2 toPeers:[NSArray arrayWithObject:[session.listOfPlayers objectAtIndex:1]] withDataMode:GKSendDataReliable error:nil];
+//		}
 		
 		
 		[self.player2 stunned];
@@ -319,8 +319,8 @@
 		[self updateHealth:self.health2Sprite toValue:self.player2.health];
 		
 		if (self.player2.health <= 10.0) {
-			NSData *data3 = [[NSString stringWithFormat:@"%d", CommandLowHealth] dataUsingEncoding:NSUTF8StringEncoding];
-			[session.gameSession sendData:data3 toPeers:[NSArray arrayWithObject:[session.listOfPlayers objectAtIndex:1]] withDataMode:GKSendDataReliable error:nil];
+//			NSData *data3 = [[NSString stringWithFormat:@"%d", CommandLowHealth] dataUsingEncoding:NSUTF8StringEncoding];
+//			[session.gameSession sendData:data3 toPeers:[NSArray arrayWithObject:[session.listOfPlayers objectAtIndex:1]] withDataMode:GKSendDataReliable error:nil];
 		}
 		
 		if (self.player2.health <= 0.0) {
@@ -465,14 +465,14 @@
 	LOG_EXPR(data);
 	
 	
-	NSArray *list = [[MultiplayerSession sharedMultiplayerSession] listOfPlayers];
+//	NSArray *list = [[MultiplayerSession sharedMultiplayerSession] listOfPlayers];
 	
-	if ([peer isEqualToString:[list objectAtIndex:0]]) {
-		[self touchedButton:button forPlayer:self.player1];
-	}
-	else {
-		[self touchedButton:button forPlayer:self.player2];
-	}
+//	if ([peer isEqualToString:[list objectAtIndex:0]]) {
+//		[self touchedButton:button forPlayer:self.player1];
+//	}
+//	else {
+//		[self touchedButton:button forPlayer:self.player2];
+//	}
 }
 
 

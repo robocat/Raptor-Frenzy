@@ -17,7 +17,6 @@
 		3E207BBA12F3AE5800600CEA /* raptor.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E207BB812F3AE5800600CEA /* raptor.png */; };
 		3E207BE312F3B0C600600CEA /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E207BE112F3B0C600600CEA /* bg.png */; };
 		3EADD04F12F461120013D38C /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EADD04E12F461120013D38C /* GameKit.framework */; };
-		3EADD07912F4632D0013D38C /* MultiplayerSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EADD07812F4632D0013D38C /* MultiplayerSession.m */; };
 		3EADD07E12F464150013D38C /* VTPG_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EADD07D12F464150013D38C /* VTPG_Common.m */; };
 		3EADD15712F4799E0013D38C /* in_game.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3EADD15512F4799E0013D38C /* in_game.caf */; };
 		3EADD15812F4799E0013D38C /* startscreen.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3EADD15612F4799E0013D38C /* startscreen.caf */; };
@@ -88,6 +87,8 @@
 		50F41343106926B2002A0D5E /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F41323106926B2002A0D5E /* CJSONSerializer.m */; };
 		50F414F11069373D002A0D5E /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F414ED1069373D002A0D5E /* fps_images.png */; };
 		50F414F21069373D002A0D5E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F414EE1069373D002A0D5E /* Icon.png */; };
+		AD383BDD13E6186A005D07AB /* GameSessionClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AD383BDC13E6186A005D07AB /* GameSessionClient.m */; };
+		AD383BE013E62B9B005D07AB /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = AD383BDF13E62B9B005D07AB /* Log.m */; };
 		AD9A9BC313E4990A00FBAC66 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD9A9BC213E4990A00FBAC66 /* MainWindow_iPad.xib */; };
 		AD9A9BC513E4991F00FBAC66 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD9A9BC413E4991F00FBAC66 /* MainWindow_iPhone.xib */; };
 		AD9A9BCB13E49A1E00FBAC66 /* RaptorAppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9A9BCA13E49A1E00FBAC66 /* RaptorAppDelegate_iPhone.m */; };
@@ -139,6 +140,7 @@
 		AD9A9C5613E4B45700FBAC66 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD9A9C5413E4B45700FBAC66 /* MainWindow.xib */; };
 		AD9A9C5713E4B45700FBAC66 /* RaptorFrenzyControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD9A9C5513E4B45700FBAC66 /* RaptorFrenzyControllerViewController.xib */; };
 		ADF946E213E5A526008A789F /* GKExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF946E113E5A526008A789F /* GKExtras.m */; };
+		ADF946E613E6120B008A789F /* GameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF946E513E6120B008A789F /* GameSession.m */; };
 		DC6640030F83B3EA000B3E49 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6640020F83B3EA000B3E49 /* AudioToolbox.framework */; };
 		DC6640050F83B3EA000B3E49 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6640040F83B3EA000B3E49 /* OpenAL.framework */; };
 		DCCBF1B70F6022AE0040855A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1B60F6022AE0040855A /* CoreGraphics.framework */; };
@@ -418,6 +420,10 @@
 		50F414ED1069373D002A0D5E /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
 		50F414EE1069373D002A0D5E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		50F414EF1069373D002A0D5E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD383BDB13E6186A005D07AB /* GameSessionClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSessionClient.h; sourceTree = "<group>"; };
+		AD383BDC13E6186A005D07AB /* GameSessionClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSessionClient.m; sourceTree = "<group>"; };
+		AD383BDE13E62B9B005D07AB /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		AD383BDF13E62B9B005D07AB /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
 		AD9A9BC213E4990A00FBAC66 /* MainWindow_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPad.xib; sourceTree = "<group>"; };
 		AD9A9BC413E4991F00FBAC66 /* MainWindow_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPhone.xib; sourceTree = "<group>"; };
 		AD9A9BC913E49A1E00FBAC66 /* RaptorAppDelegate_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RaptorAppDelegate_iPhone.h; sourceTree = "<group>"; };
@@ -477,6 +483,8 @@
 		ADF946DF13E59202008A789F /* logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging.h; sourceTree = "<group>"; };
 		ADF946E113E5A526008A789F /* GKExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GKExtras.m; path = RoboKit/GKExtras.m; sourceTree = "<group>"; };
 		ADF946E313E5A5EB008A789F /* GKExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GKExtras.h; path = RoboKit/GKExtras.h; sourceTree = "<group>"; };
+		ADF946E413E6120B008A789F /* GameSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSession.h; sourceTree = "<group>"; };
+		ADF946E513E6120B008A789F /* GameSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSession.m; sourceTree = "<group>"; };
 		DC6640020F83B3EA000B3E49 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DC6640040F83B3EA000B3E49 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		DCCBF1B60F6022AE0040855A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -805,6 +813,12 @@
 			children = (
 				3EADD07712F4632D0013D38C /* MultiplayerSession.h */,
 				3EADD07812F4632D0013D38C /* MultiplayerSession.m */,
+				ADF946E413E6120B008A789F /* GameSession.h */,
+				ADF946E513E6120B008A789F /* GameSession.m */,
+				AD383BDB13E6186A005D07AB /* GameSessionClient.h */,
+				AD383BDC13E6186A005D07AB /* GameSessionClient.m */,
+				AD383BDE13E62B9B005D07AB /* Log.h */,
+				AD383BDF13E62B9B005D07AB /* Log.m */,
 			);
 			name = GameKit;
 			sourceTree = "<group>";
@@ -1547,7 +1561,6 @@
 				E0F80F60120A0182005866B8 /* RootViewController.m in Sources */,
 				3E20791F12F3698600600CEA /* GameScene.m in Sources */,
 				3E207A5912F3825A00600CEA /* Player.m in Sources */,
-				3EADD07912F4632D0013D38C /* MultiplayerSession.m in Sources */,
 				3EADD07E12F464150013D38C /* VTPG_Common.m in Sources */,
 				AD9A9BCB13E49A1E00FBAC66 /* RaptorAppDelegate_iPhone.m in Sources */,
 				AD9A9C4F13E4B2CB00FBAC66 /* ButtonContainer.m in Sources */,
@@ -1556,6 +1569,9 @@
 				AD9A9C5213E4B2CB00FBAC66 /* RaptorFrenzyControllerViewController.m in Sources */,
 				AD9A9C5313E4B2CB00FBAC66 /* RKSystemSound.m in Sources */,
 				ADF946E213E5A526008A789F /* GKExtras.m in Sources */,
+				ADF946E613E6120B008A789F /* GameSession.m in Sources */,
+				AD383BDD13E6186A005D07AB /* GameSessionClient.m in Sources */,
+				AD383BE013E62B9B005D07AB /* Log.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,12 +14,12 @@
 #import "RootViewController.h"
 #import "MultiplayerSession.h"
 #import "SimpleAudioEngine.h"
-
+//#import "GameSession.h"
 
 
 @implementation RaptorAppDelegate
 
-@synthesize window, paused;
+@synthesize window, paused, log, gameSession;
 
 - (void) removeStartupFlicker
 {
@@ -118,7 +118,9 @@
 	// Run the intro Scene
 	[[CCDirector sharedDirector] runWithScene: [HelloWorld scene]];
 	
-	
+	self.gameSession = [GameSession sharedGameSession];
+	self.gameSession.log = self.log;
+
 	// Preload sounds
 //	[[SimpleAudioEngine sharedEngine] preloadEffect:@"DinoWalkLoop2.caf"];
 }
@@ -163,7 +165,6 @@
 	
 	[director end];
 	
-	[[MultiplayerSession sharedMultiplayerSession].gameSession disconnectFromAllPeers];
 }
 
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
